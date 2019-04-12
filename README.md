@@ -1,5 +1,5 @@
 # profile_scraping
-Web scraping for *** profiles (hided words are decodable from the code, same applies to the later ones) 
+Web scraping for *** profiles (hidden words decodable from the code, the same applies to the ones below) 
 This code is still under development.
 
 To run the code, you need to install/download the following:
