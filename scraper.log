@@ -1,0 +1,240 @@
+WARNING:root:Start running
+INFO:root:Success: loaded excel
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "platformName": "any", "goog:chromeOptions": {"extensions": [], "args": []}}}, "desiredCapabilities": {"browserName": "chrome", "version": "", "platform": "ANY", "goog:chromeOptions": {"extensions": [], "args": []}}}
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 127.0.0.1
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session HTTP/1.1" 200 1011
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element {"using": "class name", "value": "login-email", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element HTTP/1.1" 200 102
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.6943280336504276-1/value {"text": "xinyuw@uchicago.edu", "value": ["x", "i", "n", "y", "u", "w", "@", "u", "c", "h", "i", "c", "a", "g", "o", ".", "e", "d", "u"], "id": "0.6943280336504276-1", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element/0.6943280336504276-1/value HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element {"using": "class name", "value": "login-password", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element HTTP/1.1" 200 102
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.6943280336504276-2/value {"text": "wxy19970326", "value": ["w", "x", "y", "1", "9", "9", "7", "0", "3", "2", "6"], "id": "0.6943280336504276-2", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element/0.6943280336504276-2/value HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element {"using": "xpath", "value": "//*[@type=\"submit\"]", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element HTTP/1.1" 200 102
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.6943280336504276-3/click {"id": "0.6943280336504276-3", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element/0.6943280336504276-3/click HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:root:Success: logged in LinkedIn
+INFO:root:Start scraping for James Gilbert
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https:www.google.com", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element {"using": "name", "value": "q", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element HTTP/1.1" 200 102
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.3291220398646264-1/value {"text": "site:linkedin.com/in/ James Gilbert Columbia Business School", "value": ["s", "i", "t", "e", ":", "l", "i", "n", "k", "e", "d", "i", "n", ".", "c", "o", "m", "/", "i", "n", "/", " ", "J", "a", "m", "e", "s", " ", "G", "i", "l", "b", "e", "r", "t", " ", "C", "o", "l", "u", "m", "b", "i", "a", " ", "B", "u", "s", "i", "n", "e", "s", "s", " ", "S", "c", "h", "o", "o", "l"], "id": "0.3291220398646264-1", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element/0.3291220398646264-1/value HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.3291220398646264-1/value {"text": "\ue006", "value": ["\ue006"], "id": "0.3291220398646264-1", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element/0.3291220398646264-1/value HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/elements {"using": "class name", "value": "iUh30", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/elements HTTP/1.1" 200 384
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-1/text {"id": "0.8275678832600795-1", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-1/text HTTP/1.1" 200 111
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-2/text {"id": "0.8275678832600795-2", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-2/text HTTP/1.1" 200 120
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-3/text {"id": "0.8275678832600795-3", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-3/text HTTP/1.1" 200 112
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-4/text {"id": "0.8275678832600795-4", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-4/text HTTP/1.1" 200 115
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-5/text {"id": "0.8275678832600795-5", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-5/text HTTP/1.1" 200 128
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-6/text {"id": "0.8275678832600795-6", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-6/text HTTP/1.1" 200 108
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-7/text {"id": "0.8275678832600795-7", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-7/text HTTP/1.1" 200 114
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-8/text {"id": "0.8275678832600795-8", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-8/text HTTP/1.1" 200 118
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-9/text {"id": "0.8275678832600795-9", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.8275678832600795-9/text HTTP/1.1" 200 110
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/gilbert-james", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 352180
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/james-gilbert-054342a4", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 355377
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/prestongilbert", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 332490
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/james-ray-6964725", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 340999
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/francesco-cicciarella-1228b380", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 336149
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/rhettjames", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 387979
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/jeffreywestfield", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 333285
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/james-basile-b8b0375", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 318117
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://ca.linkedin.com/in/james-gilbert", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 346191
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:root:Multiple possible results
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/gilbert-james", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 353116
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:root:No language section found
+INFO:root:Success: LinkedIn results found
+INFO:root:Start: Writing to dataframe
+INFO:root:Finished scraping for James Gilbert
+INFO:root:Start scraping for Zachary Lyman
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https:www.google.com", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element {"using": "name", "value": "q", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element HTTP/1.1" 200 102
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.2766856824277155-1/value {"text": "site:linkedin.com/in/ Zachary Lyman Columbia Business School", "value": ["s", "i", "t", "e", ":", "l", "i", "n", "k", "e", "d", "i", "n", ".", "c", "o", "m", "/", "i", "n", "/", " ", "Z", "a", "c", "h", "a", "r", "y", " ", "L", "y", "m", "a", "n", " ", "C", "o", "l", "u", "m", "b", "i", "a", " ", "B", "u", "s", "i", "n", "e", "s", "s", " ", "S", "c", "h", "o", "o", "l"], "id": "0.2766856824277155-1", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element/0.2766856824277155-1/value HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.2766856824277155-1/value {"text": "\ue006", "value": ["\ue006"], "id": "0.2766856824277155-1", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/element/0.2766856824277155-1/value HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/elements {"using": "class name", "value": "iUh30", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/elements HTTP/1.1" 200 384
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-1/text {"id": "0.5622994394085832-1", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-1/text HTTP/1.1" 200 120
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-2/text {"id": "0.5622994394085832-2", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-2/text HTTP/1.1" 200 123
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-3/text {"id": "0.5622994394085832-3", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-3/text HTTP/1.1" 200 118
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-4/text {"id": "0.5622994394085832-4", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-4/text HTTP/1.1" 200 115
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-5/text {"id": "0.5622994394085832-5", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-5/text HTTP/1.1" 200 121
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-6/text {"id": "0.5622994394085832-6", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-6/text HTTP/1.1" 200 123
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-7/text {"id": "0.5622994394085832-7", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-7/text HTTP/1.1" 200 122
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-8/text {"id": "0.5622994394085832-8", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-8/text HTTP/1.1" 200 124
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-9/text {"id": "0.5622994394085832-9", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/element/0.5622994394085832-9/text HTTP/1.1" 200 110
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zachary-lyman-b4a1b044", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 360879
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zachary-lyman-b4a1b044/de", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 396442
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zach-lyman-a3b156107", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 320587
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zach-lyman-449420", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 349610
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zachary-lyman-2b5b9610a", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 325999
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zachary-lyman-a8202b86/de", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 360610
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zach-lyman-8147015/zh-cn", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 309386
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zachary-lyman-2b5b9610a/de", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 358284
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zacharykling", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 334684
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:root:Multiple possible results
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/url {"url": "https://www.linkedin.com/in/zachary-lyman-b4a1b044", "sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "POST /session/38019394ab83a8eba76f652769f5b954/url HTTP/1.1" 200 72
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:61892/session/38019394ab83a8eba76f652769f5b954/source {"sessionId": "38019394ab83a8eba76f652769f5b954"}
+DEBUG:urllib3.connectionpool:http://127.0.0.1:61892 "GET /session/38019394ab83a8eba76f652769f5b954/source HTTP/1.1" 200 361044
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
