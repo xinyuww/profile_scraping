@@ -18,7 +18,7 @@ logging.warning('Start running')
 Load Excel
 '''
 
-df = pd.read_excel('/Users/weixinyu/Dropbox/zzz Xinyu & Xubo & Jackson/Task 2/Task_my.xlsx')
+df = pd.read_excel(par['input_dir'])
 ex_data = df.copy(deep=True)
 
 logging.info('Success: loaded excel')
@@ -40,7 +40,7 @@ sleep(1)
 
 log_in_button = driver.find_element_by_xpath('//*[@type="submit"]')
 log_in_button.click()
-
+# time to react if there's a robot check
 sleep(100)
 
 logging.info('Success: logged in LinkedIn')
@@ -49,11 +49,11 @@ logging.info('Success: logged in LinkedIn')
 '''
 Scraping subjects' LinkedIn
 '''
-for i in range(2,10):
+for i in range(par['start_num'], par['end_num']):
 	subject = ex_data.loc[i]['Full_Name']
 	logging.info('Start scraping for {}'.format(subject))
-	#subject = 'Zachary Lyman'
 	sleep(5)
+
 	profile = Profile(subject, driver)
 
 	ex_data.loc[i, 'LinkedIn URL'] = profile.url
@@ -81,7 +81,7 @@ for i in range(2,10):
 
 
 logging.info('Start: output to excel')
-ex_data.to_excel("/Users/weixinyu/Dropbox/zzz Xinyu & Xubo & Jackson/Task 2/Task_my.xlsx")
+ex_data.to_excel(par['output_dir'])
 
 logging.info('Start: quit driver')
 driver.quit()
