@@ -41,7 +41,7 @@ sleep(1)
 log_in_button = driver.find_element_by_xpath('//*[@type="submit"]')
 log_in_button.click()
 # time to react if there's a robot check
-sleep(100)
+sleep(par['login_sleep'])
 
 logging.info('Success: logged in LinkedIn')
 
