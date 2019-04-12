@@ -75,8 +75,8 @@ for i in range(par['start_num'], par['end_num']):
 		for j in range(len(profile.languages)):
 			ex_data.loc[i,'language.{}'.format(j+1)] = profile.languages[j]
 			ex_data.loc[i,'proficiency.{}'.format(j+1)] = profile.proficiencies[j]
-	else:
 		ex_data.loc[i, 'Notes'] = profile.notes
+	
 	logging.info('Finished scraping for {}'.format(subject))
 
 
