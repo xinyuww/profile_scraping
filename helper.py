@@ -6,6 +6,74 @@ from time import sleep
 from selenium.webdriver.common.keys import Keys
 from parsel import Selector
 import logging
+import numpy as np
+from selenium.webdriver.common.action_chains import ActionChains
+
+
+def text_finder(string, key='\n'):
+	ind = [pos for pos, char in enumerate(string) if char == key]
+	start = ind[-2]+1
+	end = ind[-1]
+	return string[start:end]
+
+
+def exist(soup):
+	return soup != None
+
+
+def check_hidden(soup):
+	button_tag = soup.find_all('button', class_='pv-profile-section__see-more-inline')
+	if len(button_tag) >= 1:
+		logging.info('Exist expand background section')
+		return True
+	else:
+		logging.info('Nothing to expand in background section')
+		return False
+
+
+def get_expanded_soup(soup, driver):
+	button_tag = soup.find_all('button', class_='pv-profile-section__see-more-inline')
+	for tag in button_tag:
+		ID = tag.find_parent()['id']
+		button = driver.find_element_by_xpath('//*[@id="{}"]/button'.format(ID))
+		button.click()
+		sleep(3)
+	soup_new = BeautifulSoup(driver.page_source, 'lxml')
+	return soup_new
+
+
+def check_language(soup):
+	return soup.find('section', class_='languages')
+
+
+def get_languages_soup(soup, driver):
+	ID = soup.find_all("h3", string="Languages")[0].find_parent().find_all('button')[0]['id']
+	button = driver.find_element_by_xpath('//*[@id="{}"]'.format(ID))
+	button.click()
+	sleep(3)
+	soup_new = BeautifulSoup(driver.page_source, 'lxml')
+	return soup_new
+
+def check_school(school):
+	name = school.text
+	if name == 'Columbia Business School':
+		return True
+	else:
+		return False
+
+def compute_score(linkedin_name, excel_name):
+	score = 0
+	for part in linkedin_name.split(' '):
+		if part in excel_name.split(' '):
+			score += 1
+	return score
+
+def get_label(text):
+	deg_label = ['banchelor', 'mba', 'ms', 'msc', 'master', 'doctor', 'phd', 'ba', 'bba', 'bsc', 'be']
+	for deg in deg_label:
+		if deg in text.replace('.', '').lower().split(' '):
+			return 'degree'
+	return 'field'
 
 
 def search_subject(subject, driver):
@@ -13,7 +81,7 @@ def search_subject(subject, driver):
 	sleep(3)
 
 	search_query = driver.find_element_by_name('q')
-	search_query.send_keys('site:linkedin.com/in/ {} Columbia Business School'.format(subject))
+	search_query.send_keys('site:linkedin.com/in/ {} linkedin Columbia'.format(subject))
 	sleep(1)
 	search_query.send_keys(Keys.RETURN)
 	sleep(3)
@@ -27,61 +95,62 @@ def search_subject(subject, driver):
 	'''
 	Select the correct LinkedIn url
 	'''
+	
+	
 	correct_urls = []
+	scores = []
 
 	for i in range(len(linkedin_urls)):
+
 		driver.get(linkedin_urls[i])
 		sleep(5)
 		soup = BeautifulSoup(driver.page_source, 'lxml')
 		name = soup.find('h1', class_='pv-top-card-section__name').text.replace('\n', '').replace('    ', '').replace('  ', '')
 		schools = soup.find_all('h3', class_='pv-entity__school-name t-16 t-black t-bold')
 		
-		for j in range(len(schools)):
-			print(schools[j].text)
-			if schools[j].text == 'Columbia Business School':
-				'''
-				Need to check degree as well
-				'''
-				check_name = 0
-				for part in name.split(' '):
-					print(part)
-					print(subject.split(' '))
-					check_name
-					if part in subject.split(' '):
-						check_name = 1
-					print(check_name)
-				if check_name:
-					correct_urls.append(linkedin_urls[i])
+		for school in schools:
+			if check_school(school):
+				scores.append(compute_score(name, subject))
+				break
+
 	# for i in range(len(correct_urls)):
 	# 	if '?locale=de_DE' in correct_urls[i] and correct_urls[i].replace('?locale=de_DE', '') in correct_urls:
 	# 		correct_urls.remove(correct_urls[i])
 	notes = ''
 
-	if not correct_urls:
+	print("scores: ", scores)
+
+	if sum(scores) == 0:
 		print("No results found")
 		url = 'no results'
-		soup = None
+		soup_new = None
 		logging.debug('No LinkedIn results found')
 	else:
-		if len(correct_urls)-1:
-			print("Multiple results found")
+		scores = np.array(scores)
+		ind = np.where(scores == np.max(scores))[0]
+
+		if len(ind) > 1:
+			print('Multiple results found')
 			notes = 'multiple results'
 			logging.debug('Multiple possible results')
-		url = correct_urls[0]
-		driver.get(url)
-		sleep(10)
+			for i in ind:
+				logging.info(linkedin_urls[i])
+	# if True:
+	# 	notes = ''
+	# 	url = 'https://www.linkedin.com/in/zachary-lyman-b4a1b044/'
+		url = linkedin_urls[ind[0]]
+		print(url)
 
+		driver.get(url)
+		sleep(12)
 		soup = BeautifulSoup(driver.page_source, 'lxml')
 
-	return url, soup, notes
+		if check_hidden(soup):
+			soup_new = get_expanded_soup(soup, driver)
+		else:
+			soup_new = soup
+
+	return url, soup_new, notes
 
 
-def text_finder(string, key='\n'):
-	ind = [pos for pos, char in enumerate(string) if char == key]
-	start = ind[-2]+1
-	end = ind[-1]
-	return string[start:end]
 
-
-def exist(soup):
-	return soup != None

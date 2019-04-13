@@ -14,15 +14,6 @@ logging.basicConfig(filename='scraper.log', filemode='w',level=logging.DEBUG)
 logging.warning('Start running')
 
 
-'''
-Load Excel
-'''
-
-df = pd.read_excel(par['input_dir'])
-ex_data = df.copy(deep=True)
-
-logging.info('Success: loaded excel')
-
 
 '''
 login LinkedIn
@@ -50,6 +41,20 @@ logging.info('Success: logged in LinkedIn')
 Scraping subjects' LinkedIn
 '''
 for i in range(par['start_num'], par['end_num']):
+
+	'''
+	Load Excel
+	'''
+
+	df = pd.read_excel(par['input_dir'])
+	ex_data = df.copy(deep=True)
+
+	logging.info('Success: loaded excel')
+
+	'''
+	Write to excel
+	'''
+	
 	subject = ex_data.loc[i]['Full_Name']
 	logging.info('Start scraping for {}'.format(subject))
 	sleep(5)
@@ -58,6 +63,18 @@ for i in range(par['start_num'], par['end_num']):
 
 	ex_data.loc[i, 'LinkedIn URL'] = profile.url
 	if profile.soup != None:
+		print(profile.schools)
+		print(profile.degrees)
+		print(profile.fields)
+		print(profile.school_dates)
+		print(profile.titles)
+		print(profile.companies)
+		print(profile.company_dates)
+		print(profile.durations)
+		print(profile.locations)
+		print(profile.languages)
+		print(profile.proficiencies)
+
 		logging.info('Success: LinkedIn results found')
 		logging.info('Start: Writing to dataframe')
 		ex_data.loc[i, 'Name'] = profile.linkedin_name
@@ -76,12 +93,12 @@ for i in range(par['start_num'], par['end_num']):
 			ex_data.loc[i,'language.{}'.format(j+1)] = profile.languages[j]
 			ex_data.loc[i,'proficiency.{}'.format(j+1)] = profile.proficiencies[j]
 		ex_data.loc[i, 'Notes'] = profile.notes
-	
+		
+	logging.info('Start: output to excel')
+	ex_data.to_excel(par['output_dir'])
+
 	logging.info('Finished scraping for {}'.format(subject))
 
-
-logging.info('Start: output to excel')
-ex_data.to_excel(par['output_dir'])
 
 logging.info('Start: quit driver')
 driver.quit()

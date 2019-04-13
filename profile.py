@@ -5,8 +5,7 @@ from parameters import par
 from time import sleep
 from selenium.webdriver.common.keys import Keys
 from parsel import Selector
-import helper
-from helper import text_finder, exist
+from helper import *
 import logging
 
 
@@ -15,6 +14,11 @@ class Profile:
 	def __init__(self, subject, driver):
 		self.name = subject
 		self.driver = driver
+
+		# self.url = 'https://www.linkedin.com/in/zachary-lyman-b4a1b044/'
+		# self.driver.get(self.url)
+		# self.soup = BeautifulSoup(driver.page_source, 'lxml')
+		# self.notes = ''
 
 		self.url, self.soup, self.notes = self.get_url(self.name, self.driver)
 		if self.soup != None:
@@ -26,7 +30,7 @@ class Profile:
 			pass
 
 	def get_url(self, subject, driver):
-		return helper.search_subject(subject, driver)
+		return search_subject(subject, driver)
 
 	def get_linkedin_name(self, soup):
 		return soup.find('h1').text.replace('\n', '').replace('    ', '').replace('  ', '')
@@ -129,15 +133,21 @@ class Profile:
 				# Find degree info
 				degree_node = current_node.find_all('span',class_="pv-entity__comma-item")
 				if degree_node:
-					degree_list.append(degree_node[0].text)
-					# check if there's field info
 					if len(degree_node) > 1: 
+						degree_list.append(degree_node[0].text)
 						field_list.append(degree_node[1].text)
-					else:
-						field_list.append('')
-						logging.debug('No field info found for school {}'.format(i))
+					elif len(degree_node) == 1:
+						text = degree_node[0].text
+						if get_label(text) == 'degree':
+							degree_list.append(text)
+							field_list.append('')
+						elif get_label(text) == 'field':
+							field_list.append(text)
+							degree_list.append('')
+
 				else:
 					degree_list.append('')
+					field_list.append('')
 					logging.debug('No degree or field found for school {}'.format(i))
 
 				
@@ -151,19 +161,22 @@ class Profile:
 		language_list = []
 		proficiency_list = []
 
-		if soup.find('section', class_='languages'):
-			driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1080);")
-			sleep(5)
+		if check_language(soup):
 
-			try:
-				expand_language_button = driver.find_element_by_xpath('//button[@aria-label="Expand languages section"]')
-			except:
-				logging.debug('Expand button not in view')
-				return language_list, proficiency_list
+			soup_new = get_languages_soup(soup, driver)
+
+			# driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1080);")
+			# sleep(5)
+
+			# try:
+			# 	expand_language_button = driver.find_element_by_xpath('//button[@aria-label="Expand languages section"]')
+			# except:
+			# 	logging.debug('Expand button not in view')
+			# 	return language_list, proficiency_list
 			
-			expand_language_button.click()
+			# expand_language_button.click()
 
-			soup_new = BeautifulSoup(driver.page_source, 'lxml')
+			# soup_new = BeautifulSoup(driver.page_source, 'lxml')
 
 			languages = soup_new.find_all('ul', class_='pv-accomplishments-block__list')[0].find_all('li')
 
