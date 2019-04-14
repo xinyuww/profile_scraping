@@ -47,7 +47,11 @@ def check_language(soup):
 
 
 def get_languages_soup(soup, driver):
-	ID = soup.find_all("h3", string="Languages")[0].find_parent().find_all('button')[0]['id']
+	language_section = soup.find_all("h3", string="Languages")
+	if not language_section:
+		language_section = soup.find_all("h3", string="Language")
+
+	ID = language_section[0].find_parent().find_all('button')[0]['id']
 	button = driver.find_element_by_xpath('//*[@id="{}"]'.format(ID))
 	button.click()
 	sleep(3)
@@ -94,9 +98,18 @@ def find_unique_url(linkedin_urls, ind):
 
 		if ID not in unique_ID:
 			unique_ID.append(ID)
-	unique_url = ['www.linkedin.com/in/' + ID for ID in unique_ID]
+	unique_url = ['https://www.linkedin.com/in/' + ID for ID in unique_ID]
 
 	return unique_url
+
+def merge(l):
+	string = ''
+	for item in l:
+		string = string + '; ' + item
+	string = string[1:]
+	return string
+
+
 
 def search_subject(subject, driver):
 	driver.get('https:www.google.com')
@@ -124,8 +137,15 @@ def search_subject(subject, driver):
 
 	for i in range(len(linkedin_urls)):
 
+		if 'https:' not in linkedin_urls[i]:
+			linkedin_urls[i] = 'https:' + linkedin_urls[i]
+		
 		driver.get(linkedin_urls[i])
-		sleep(5)
+
+		sleep(3)
+		driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+		sleep(8)
+
 		soup = BeautifulSoup(driver.page_source, 'lxml')
 		name_node = soup.find('h1', class_='pv-top-card-section__name')
 		if name_node:
@@ -152,10 +172,10 @@ def search_subject(subject, driver):
 			school_card = soup.find('span', class_='pv-top-card-v2-section__school-name')
 			company_card = soup.find('span', class_='pv-top-card-v2-section__company-name')
 
-			if company_card and 'Columbia Business School' in company_card:
+			if company_card and 'Columbia Business School' in company_card.text:
 				pass_school = 1
 
-			if school_card and 'Columbia Business School' in school_card:
+			if school_card and 'Columbia Business School' in school_card.text:
 				pass_school = 1
 
 			if pass_school:
@@ -165,14 +185,10 @@ def search_subject(subject, driver):
 		else:
 			pass
 
-		
 
-	# for i in range(len(correct_urls)):
-	# 	if '?locale=de_DE' in correct_urls[i] and correct_urls[i].replace('?locale=de_DE', '') in correct_urls:
-	# 		correct_urls.remove(correct_urls[i])
 	notes = ''
 	url = ''
-	
+
 	print("scores: ", scores)
 
 	if sum(scores) == 0:
@@ -198,12 +214,20 @@ def search_subject(subject, driver):
 			url = linkedin_urls[ind[0]]
 	# if True:
 	# 	notes = ''
-	# 	url = 'https://www.linkedin.com/in/xinyu-wei-a9126911a/'
 		
+		
+		if 'https://' not in url:
+			url = 'https://' + url
+
 		print(url)
 
 		driver.get(url)
-		sleep(25)
+		sleep(3)
+		driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+		sleep(5)
+		driver.execute_script("window.scrollTo(0, 0);")
+		sleep(5)
+
 		soup = BeautifulSoup(driver.page_source, 'lxml')
 
 		if check_hidden(soup):

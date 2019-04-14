@@ -54,10 +54,14 @@ for i in range(par['start_num'], par['end_num']):
 	'''
 	Write to excel
 	'''
-	
+
 	subject = ex_data.loc[i]['Full_Name']
 	logging.info('Start scraping for {}'.format(subject))
 	sleep(5)
+
+
+	#url = ex_data.loc[i]['LinkedIn URL']
+
 
 	profile = Profile(subject, driver)
 

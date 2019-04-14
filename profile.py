@@ -14,6 +14,7 @@ class Profile:
 	def __init__(self, subject, driver):
 		self.name = subject
 		self.driver = driver
+		#self.input = url
 
 		# self.url = 'https://www.linkedin.com/in/zachary-lyman-b4a1b044/'
 		# self.driver.get(self.url)
@@ -66,14 +67,27 @@ class Profile:
 					durations = []
 					locations = []
 					for role in roles:
-						titles.append(text_finder(role.find('h3').text))
-						locations.append(text_finder(role.find('h4', class_='pv-entity__location').text))
-						dates.append(text_finder(role.find('h4', class_='pv-entity__date-range').text))
-						durations.append(text_finder(role.find('span', class_='pv-entity__bullet-item-v2').text))
-					title_list.append(titles)
-					duration_list.append(durations)
-					date_list.append(dates)
-					location_list.append(locations)
+						if role.find('h3'):
+							titles.append(text_finder(role.find('h3').text))
+						else: 
+							titles.append('n/a')
+						if role.find('h4', class_='pv-entity__location'):
+							locations.append(text_finder(role.find('h4', class_='pv-entity__location').text))
+						else:
+							locations.append('n/a')
+						if role.find('h4', class_='pv-entity__date-range'):
+							dates.append(text_finder(role.find('h4', class_='pv-entity__date-range').text))
+						else:
+							dates.append('n/a')
+						if role.find('span', class_='pv-entity__bullet-item-v2'):
+							durations.append(role.find('span', class_='pv-entity__bullet-item-v2').text)
+						else:
+							durations.append('n/a')
+
+					title_list.append(merge(titles))
+					duration_list.append(merge(durations))
+					date_list.append(merge(dates))
+					location_list.append(merge(locations))
 					
 				else:
 
