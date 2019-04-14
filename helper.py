@@ -83,7 +83,7 @@ def get_label(text):
 
 def find_unique_url(linkedin_urls, ind):
 	linkedin_urls = np.array(linkedin_urls)
-	correct_urls = linkedin_urls(ind)
+	correct_urls = linkedin_urls[ind]
 	unique_ID = []
 	for url in correct_urls:
 		start = url.index('/in/') + 4
@@ -103,7 +103,7 @@ def search_subject(subject, driver):
 	sleep(3)
 
 	search_query = driver.find_element_by_name('q')
-	search_query.send_keys('site:linkedin.com/in/ {} linkedin Columbia'.format(subject))
+	search_query.send_keys('site:linkedin.com/in/ {} linkedin Columbia Business School'.format(subject))
 	sleep(1)
 	search_query.send_keys(Keys.RETURN)
 	sleep(3)
@@ -142,23 +142,23 @@ def search_subject(subject, driver):
 
 			schools = soup.find_all('h3', class_='pv-entity__school-name t-16 t-black t-bold')
 
-			check_school = 0
+			pass_school = 0
 
 			for school in schools:
 				if check_school(school):
-					check_school = 1
+					pass_school = 1
 					break
 
 			school_card = soup.find('span', class_='pv-top-card-v2-section__school-name')
 			company_card = soup.find('span', class_='pv-top-card-v2-section__company-name')
 
 			if company_card and 'Columbia Business School' in company_card:
-				check_school = 1
+				pass_school = 1
 
 			if school_card and 'Columbia Business School' in school_card:
-				check_school = 1
+				pass_school = 1
 
-			if check_school:
+			if pass_school:
 				scores.append(compute_score(name, subject))
 
 
@@ -171,7 +171,8 @@ def search_subject(subject, driver):
 	# 	if '?locale=de_DE' in correct_urls[i] and correct_urls[i].replace('?locale=de_DE', '') in correct_urls:
 	# 		correct_urls.remove(correct_urls[i])
 	notes = ''
-
+	url = ''
+	
 	print("scores: ", scores)
 
 	if sum(scores) == 0:
@@ -182,22 +183,27 @@ def search_subject(subject, driver):
 	else:
 		scores = np.array(scores)
 		ind = np.where(scores == np.max(scores))[0]
+		if len(ind) >1:
 
-		urls = find_unique_url(linkedin_urls, ind)
-		if len(urls) > 1:
-			print('Multiple results found')
-			notes = 'multiple results'
-			logging.debug('Multiple possible results')
-			for url in urls:
-				logging.info(url)
+			urls = find_unique_url(linkedin_urls, ind)
+			if len(urls) > 1:
+				print('Multiple results found')
+				notes = 'multiple results'
+				logging.debug('Multiple possible results')
+				for url in urls:
+					logging.info(url)
+			url = urls[0]
+
+		elif len(ind) == 1:
+			url = linkedin_urls[ind[0]]
 	# if True:
 	# 	notes = ''
 	# 	url = 'https://www.linkedin.com/in/xinyu-wei-a9126911a/'
-		url = urls[0]
+		
 		print(url)
 
 		driver.get(url)
-		sleep(12)
+		sleep(25)
 		soup = BeautifulSoup(driver.page_source, 'lxml')
 
 		if check_hidden(soup):
