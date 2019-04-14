@@ -55,8 +55,14 @@ def get_languages_soup(soup, driver):
 	return soup_new
 
 def check_school(school):
-	name = school.text
-	if name == 'Columbia Business School':
+	name = school.text.split(' ')
+	if 'Columbia' in name and 'Business' in name:
+		return True
+	else:
+		return False
+
+def check_experience(company, title):
+	if check_school(company) and 'MBA' in title:
 		return True
 	else:
 		return False
@@ -69,12 +75,28 @@ def compute_score(linkedin_name, excel_name):
 	return score
 
 def get_label(text):
-	deg_label = ['banchelor', 'mba', 'ms', 'msc', 'master', 'doctor', 'phd', 'ba', 'bba', 'bsc', 'be']
+	deg_label = ['banchelor', 'mba', 'ms', 'msc', 'master', 'doctor', 'phd', 'ba', 'bba', 'bsc', 'be','bsba']
 	for deg in deg_label:
 		if deg in text.replace('.', '').lower().split(' '):
 			return 'degree'
 	return 'field'
 
+def find_unique_url(linkedin_urls, ind):
+	linkedin_urls = np.array(linkedin_urls)
+	correct_urls = linkedin_urls(ind)
+	unique_ID = []
+	for url in correct_urls:
+		start = url.index('/in/') + 4
+		ID = url[start:]
+		if '/' in ID:
+			end = ID.index('/')
+			ID = ID[:end]
+
+		if ID not in unique_ID:
+			unique_ID.append(ID)
+	unique_url = ['www.linkedin.com/in/' + ID for ID in unique_ID]
+
+	return unique_url
 
 def search_subject(subject, driver):
 	driver.get('https:www.google.com')
@@ -105,13 +127,45 @@ def search_subject(subject, driver):
 		driver.get(linkedin_urls[i])
 		sleep(5)
 		soup = BeautifulSoup(driver.page_source, 'lxml')
-		name = soup.find('h1', class_='pv-top-card-section__name').text.replace('\n', '').replace('    ', '').replace('  ', '')
-		schools = soup.find_all('h3', class_='pv-entity__school-name t-16 t-black t-bold')
-		
-		for school in schools:
-			if check_school(school):
+		name_node = soup.find('h1', class_='pv-top-card-section__name')
+		if name_node:
+			name_split = name_node.text.replace('\n', '').split(' ')
+			while True:
+			    try:
+			        name_split.remove('')
+			    except:
+			        break
+			name = ''
+			for part in name_split:
+				name = name + ' ' + part
+			name = name[1:]
+
+			schools = soup.find_all('h3', class_='pv-entity__school-name t-16 t-black t-bold')
+
+			check_school = 0
+
+			for school in schools:
+				if check_school(school):
+					check_school = 1
+					break
+
+			school_card = soup.find('span', class_='pv-top-card-v2-section__school-name')
+			company_card = soup.find('span', class_='pv-top-card-v2-section__company-name')
+
+			if company_card and 'Columbia Business School' in company_card:
+				check_school = 1
+
+			if school_card and 'Columbia Business School' in school_card:
+				check_school = 1
+
+			if check_school:
 				scores.append(compute_score(name, subject))
-				break
+
+
+		else:
+			pass
+
+		
 
 	# for i in range(len(correct_urls)):
 	# 	if '?locale=de_DE' in correct_urls[i] and correct_urls[i].replace('?locale=de_DE', '') in correct_urls:
@@ -129,16 +183,17 @@ def search_subject(subject, driver):
 		scores = np.array(scores)
 		ind = np.where(scores == np.max(scores))[0]
 
-		if len(ind) > 1:
+		urls = find_unique_url(linkedin_urls, ind)
+		if len(urls) > 1:
 			print('Multiple results found')
 			notes = 'multiple results'
 			logging.debug('Multiple possible results')
-			for i in ind:
-				logging.info(linkedin_urls[i])
+			for url in urls:
+				logging.info(url)
 	# if True:
 	# 	notes = ''
-	# 	url = 'https://www.linkedin.com/in/zachary-lyman-b4a1b044/'
-		url = linkedin_urls[ind[0]]
+	# 	url = 'https://www.linkedin.com/in/xinyu-wei-a9126911a/'
+		url = urls[0]
 		print(url)
 
 		driver.get(url)

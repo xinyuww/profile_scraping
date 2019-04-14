@@ -33,7 +33,12 @@ class Profile:
 		return search_subject(subject, driver)
 
 	def get_linkedin_name(self, soup):
-		return soup.find('h1').text.replace('\n', '').replace('    ', '').replace('  ', '')
+		if soup.find('h1'):
+			return soup.find('h1').text.replace('\n', '').replace('    ', '').replace('  ', '')
+		else:
+			logging.debug('No name found')
+			return None
+
 
 	def get_companies(self, soup):
 		title_list = []
@@ -51,47 +56,68 @@ class Profile:
 			for i in range(num_experiences):
 				current_node = experiences[i]
 
-				# Find title
-				title_node = current_node.find('h3')
-				if title_node:
-					title_list.append(title_node.text)
+				roles = current_node.find_all('li', class_='pv-entity__position-group-role-item')
+				if roles:
+					logging.info('Multiple roles for experience {}'.format(i))
+					company_node = current_node.find('h3')
+					company_list.append(text_finder(company_node.text))
+					titles = []
+					dates = []
+					durations = []
+					locations = []
+					for role in roles:
+						titles.append(text_finder(role.find('h3').text))
+						locations.append(text_finder(role.find('h4', class_='pv-entity__location').text))
+						dates.append(text_finder(role.find('h4', class_='pv-entity__date-range').text))
+						durations.append(text_finder(role.find('span', class_='pv-entity__bullet-item-v2').text))
+					title_list.append(titles)
+					duration_list.append(durations)
+					date_list.append(dates)
+					location_list.append(locations)
+					
 				else:
-					title_list.append('')
-					logging.debug('No title found for company {}'.format(i))
 
-				# Find company
-				company_node = current_node.find('span', class_="pv-entity__secondary-title")
-				if company_node:
-					company_list.append(company_node.text)
-				else:
-					company_list.append('')
-					logging.debug('No company name found for company {}'.format(i))
+					# Find title
+					title_node = current_node.find('h3')
+					if title_node:
+						title_list.append(title_node.text)
+					else:
+						title_list.append('')
+						logging.debug('No title found for company {}'.format(i))
 
-				# Find duration
-				duration_node = current_node.find('span', class_="pv-entity__bullet-item-v2")
-				if duration_node:
-					duration_list.append(duration_node.text)
-				else:
-					duration_list.append('')
-					logging.debug('No duration found for company {}'.format(i))
+					# Find company
+					company_node = current_node.find('span', class_="pv-entity__secondary-title")
+					if company_node:
+						company_list.append(company_node.text)
+					else:
+						company_list.append('')
+						logging.debug('No company name found for company {}'.format(i))
 
-				# Find date
-				date_node = current_node.find('h4', class_="pv-entity__date-range")
-				if date_node:
-					date_string = date_node.text
-					date_list.append(text_finder(date_string, '\n'))
-				else:
-					date_list.append('')
-					logging.debug('No date found for company {}'.format(i))
+					# Find duration
+					duration_node = current_node.find('span', class_="pv-entity__bullet-item-v2")
+					if duration_node:
+						duration_list.append(duration_node.text)
+					else:
+						duration_list.append('')
+						logging.debug('No duration found for company {}'.format(i))
 
-				# Find location
-				location_node = current_node.find('h4', class_="pv-entity__location")
-				if location_node:
-					location_string = location_node.text
-					location_list.append(text_finder(location_string, '\n'))
-				else:
-					location_list.append('')
-					logging.debug('No location found for company {}'.format(i))
+					# Find date
+					date_node = current_node.find('h4', class_="pv-entity__date-range")
+					if date_node:
+						date_string = date_node.text
+						date_list.append(text_finder(date_string, '\n'))
+					else:
+						date_list.append('')
+						logging.debug('No date found for company {}'.format(i))
+
+					# Find location
+					location_node = current_node.find('h4', class_="pv-entity__location")
+					if location_node:
+						location_string = location_node.text
+						location_list.append(text_finder(location_string, '\n'))
+					else:
+						location_list.append('')
+						logging.debug('No location found for company {}'.format(i))
 		else:
 			logging.debug('No experience section found')
 
