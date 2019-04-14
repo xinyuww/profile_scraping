@@ -1,8 +1,6 @@
 # profile_scraping
 Web scraping for *** profiles (hidden words decodable from the code, the same applies to the ones below) 
 
-This code is still under development.
-
 To run the code, you need to install/download the following:
 1) BeautifulSoup (https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 2) Chromedriver (http://chromedriver.chromium.org/)
