@@ -16,6 +16,20 @@ def text_finder(string, key='\n'):
 	end = ind[-1]
 	return string[start:end]
 
+def remove_space(string, key):
+	split = string.replace(key, '').split(' ')
+	while True:
+	    try:
+	        split.remove('')
+	    except:
+	        break
+	text = ''
+	for part in split:
+		text = text + ' ' + part
+	text = text[1:]
+
+	return text
+
 
 def exist(soup):
 	return soup != None
@@ -51,7 +65,7 @@ def get_languages_soup(soup, driver):
 	if not language_section:
 		language_section = soup.find_all("h3", string="Language")
 
-	ID = language_section[0].find_parent().find_all('button')[0]['id']
+	ID = language_section[0].find_parent().find('button')['id']
 	button = driver.find_element_by_xpath('//*[@id="{}"]'.format(ID))
 	button.click()
 	sleep(3)
@@ -113,52 +127,42 @@ def merge(l):
 
 def search_subject(subject, driver):
 	driver.get('https:www.google.com')
-	sleep(3)
+	sleep(2)
 
 	search_query = driver.find_element_by_name('q')
 	search_query.send_keys('site:linkedin.com/in/ {} linkedin Columbia Business School'.format(subject))
-	sleep(1)
+	sleep(0.5)
 	search_query.send_keys(Keys.RETURN)
 	sleep(3)
 
 	linkedin_urls = driver.find_elements_by_class_name('iUh30')
 	linkedin_urls = [url.text for url in linkedin_urls]
-	sleep(2)
+	linkedin_urls = linkedin_urls[:5]
 
-	print("Done searching subject")
+	print("Start filtering subject")
 
 	'''
 	Select the correct LinkedIn url
 	'''
-	
 	
 	correct_urls = []
 	scores = []
 
 	for i in range(len(linkedin_urls)):
 
-		if 'https:' not in linkedin_urls[i]:
-			linkedin_urls[i] = 'https:' + linkedin_urls[i]
+		if 'https://' not in linkedin_urls[i]:
+			linkedin_urls[i] = 'https://' + linkedin_urls[i]
 		
 		driver.get(linkedin_urls[i])
 
-		sleep(3)
+		sleep(2)
 		driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-		sleep(8)
+		sleep(3)
 
 		soup = BeautifulSoup(driver.page_source, 'lxml')
 		name_node = soup.find('h1', class_='pv-top-card-section__name')
 		if name_node:
-			name_split = name_node.text.replace('\n', '').split(' ')
-			while True:
-			    try:
-			        name_split.remove('')
-			    except:
-			        break
-			name = ''
-			for part in name_split:
-				name = name + ' ' + part
-			name = name[1:]
+			name = remove_space(name_node.text, '\n')
 
 			schools = soup.find_all('h3', class_='pv-entity__school-name t-16 t-black t-bold')
 
@@ -222,18 +226,20 @@ def search_subject(subject, driver):
 		print(url)
 
 		driver.get(url)
-		sleep(3)
+		sleep(2)
 		driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-		sleep(5)
+		sleep(3)
 		driver.execute_script("window.scrollTo(0, 0);")
-		sleep(5)
+		sleep(1)
 
 		soup = BeautifulSoup(driver.page_source, 'lxml')
 
-		if check_hidden(soup):
+		while check_hidden(soup):
 			soup_new = get_expanded_soup(soup, driver)
-		else:
-			soup_new = soup
+			soup = soup_new
+			driver.execute_script("window.scrollTo(0, 0);")
+		
+		soup_new = soup
 
 	return url, soup_new, notes
 

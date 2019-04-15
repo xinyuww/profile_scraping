@@ -35,7 +35,7 @@ class Profile:
 
 	def get_linkedin_name(self, soup):
 		if soup.find('h1'):
-			return soup.find('h1').text.replace('\n', '').replace('    ', '').replace('  ', '')
+			return remove_space(soup.find('h1').text, '\n')
 		else:
 			logging.debug('No name found')
 			return None
@@ -189,8 +189,7 @@ class Profile:
 					degree_list.append('')
 					field_list.append('')
 					logging.debug('No degree or field found for school {}'.format(i))
-
-				
+			
 		else:
 			logging.debug('No education section found')
 
@@ -202,21 +201,7 @@ class Profile:
 		proficiency_list = []
 
 		if check_language(soup):
-
 			soup_new = get_languages_soup(soup, driver)
-
-			# driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1080);")
-			# sleep(5)
-
-			# try:
-			# 	expand_language_button = driver.find_element_by_xpath('//button[@aria-label="Expand languages section"]')
-			# except:
-			# 	logging.debug('Expand button not in view')
-			# 	return language_list, proficiency_list
-			
-			# expand_language_button.click()
-
-			# soup_new = BeautifulSoup(driver.page_source, 'lxml')
 
 			languages = soup_new.find_all('ul', class_='pv-accomplishments-block__list')[0].find_all('li')
 
@@ -224,7 +209,7 @@ class Profile:
 				# Find language name
 				language_node = languages[i].find(class_='pv-accomplishment-entity__title')
 				if language_node:
-					language_list.append(text_finder(language_node.text))
+					language_list.append(remove_space(text_finder(language_node.text), ''))
 				else:
 					language_list.append('')
 					logging.debug('No language name found for language {}'.format(i))
@@ -232,7 +217,7 @@ class Profile:
 				# Find proficiency
 				proficiency_node = languages[i].find(class_='pv-accomplishment-entity__proficiency')
 				if proficiency_node:
-					proficiency_list.append(text_finder(proficiency_node.text))
+					proficiency_list.append(remove_space(text_finder(proficiency_node.text), ''))
 				else:
 					proficiency_list.append('')
 					logging.debug('No proficiency found for language {}'.format(i))
