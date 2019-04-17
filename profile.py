@@ -203,24 +203,28 @@ class Profile:
 		if check_language(soup):
 			soup_new = get_languages_soup(soup, driver)
 
-			languages = soup_new.find_all('ul', class_='pv-accomplishments-block__list')[0].find_all('li')
+			try:
+				languages = soup_new.find_all('ul', class_='pv-accomplishments-block__list')[0].find_all('li')
 
-			for i in range(len(languages)):
-				# Find language name
-				language_node = languages[i].find(class_='pv-accomplishment-entity__title')
-				if language_node:
-					language_list.append(remove_space(text_finder(language_node.text), ''))
-				else:
-					language_list.append('')
-					logging.debug('No language name found for language {}'.format(i))
+				for i in range(len(languages)):
+					# Find language name
+					language_node = languages[i].find(class_='pv-accomplishment-entity__title')
+					if language_node:
+						language_list.append(remove_space(text_finder(language_node.text), ''))
+					else:
+						language_list.append('')
+						logging.debug('No language name found for language {}'.format(i))
 
-				# Find proficiency
-				proficiency_node = languages[i].find(class_='pv-accomplishment-entity__proficiency')
-				if proficiency_node:
-					proficiency_list.append(remove_space(text_finder(proficiency_node.text), ''))
-				else:
-					proficiency_list.append('')
-					logging.debug('No proficiency found for language {}'.format(i))
+					# Find proficiency
+					proficiency_node = languages[i].find(class_='pv-accomplishment-entity__proficiency')
+					if proficiency_node:
+						proficiency_list.append(remove_space(text_finder(proficiency_node.text), ''))
+					else:
+						proficiency_list.append('')
+						logging.debug('No proficiency found for language {}'.format(i))
+			except:
+				print("ERROR: Language index out of range")
+				logging.debug("ERROR: Language index out of range")
 		else:
 			logging.debug('No language section found')
 

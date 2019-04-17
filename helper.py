@@ -123,6 +123,30 @@ def merge(l):
 	string = string[1:]
 	return string
 
+def check_company(soup):
+	check = False
+
+	experience_node = soup.find_all('section', class_='experience-section')
+
+	if experience_node:
+		experiences = experience_node[0].find_all('li', class_='pv-profile-section')
+		num_experiences = len(experiences)
+
+		for i in range(num_experiences):
+			current_node = experiences[i]
+
+			roles = current_node.find_all('li', class_='pv-entity__position-group-role-item')
+			if roles:
+				company_node = current_node.find('h3')
+				if 'Columbia Business School' in text_finder(company_node.text):
+					check = True
+				
+			else:
+				company_node = current_node.find('span', class_="pv-entity__secondary-title")
+				if company_node:
+					if 'Columbia Business School' in company_node.text:
+						check = True
+	return check
 
 
 def search_subject(subject, driver):
@@ -130,14 +154,14 @@ def search_subject(subject, driver):
 	sleep(2)
 
 	search_query = driver.find_element_by_name('q')
-	search_query.send_keys('site:linkedin.com/in/ {} linkedin Columbia Business School'.format(subject))
+	search_query.send_keys('site:linkedin.com/in/ {}'.format(subject))
 	sleep(0.5)
 	search_query.send_keys(Keys.RETURN)
 	sleep(3)
 
 	linkedin_urls = driver.find_elements_by_class_name('iUh30')
 	linkedin_urls = [url.text for url in linkedin_urls]
-	linkedin_urls = linkedin_urls[:5]
+	linkedin_urls = linkedin_urls[:3]
 
 	print("Start filtering subject")
 
@@ -156,10 +180,25 @@ def search_subject(subject, driver):
 		driver.get(linkedin_urls[i])
 
 		sleep(2)
-		driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+		driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
 		sleep(3)
+		driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+		sleep(2)
+		driver.execute_script("window.scrollTo(0, 0);")
+		sleep(1)
+
 
 		soup = BeautifulSoup(driver.page_source, 'lxml')
+
+		try:
+			while check_hidden(soup):
+				soup2 = get_expanded_soup(soup, driver)
+				soup = soup2
+				driver.execute_script("window.scrollTo(0, 0);")
+		except:
+			print("ERROR: Element not interatable")
+
+
 		name_node = soup.find('h1', class_='pv-top-card-section__name')
 		if name_node:
 			name = remove_space(name_node.text, '\n')
@@ -180,6 +219,9 @@ def search_subject(subject, driver):
 				pass_school = 1
 
 			if school_card and 'Columbia Business School' in school_card.text:
+				pass_school = 1
+
+			if check_company(soup):
 				pass_school = 1
 
 			if pass_school:
@@ -208,7 +250,7 @@ def search_subject(subject, driver):
 			urls = find_unique_url(linkedin_urls, ind)
 			if len(urls) > 1:
 				print('Multiple results found')
-				notes = 'multiple results'
+				notes = notes + 'multiple results'
 				logging.debug('Multiple possible results')
 				for url in urls:
 					logging.info(url)
@@ -216,6 +258,10 @@ def search_subject(subject, driver):
 
 		elif len(ind) == 1:
 			url = linkedin_urls[ind[0]]
+
+		if scores[ind[0]] < 2:
+			notes = 'check match; '
+
 	# if True:
 	# 	notes = ''
 		
@@ -226,18 +272,25 @@ def search_subject(subject, driver):
 		print(url)
 
 		driver.get(url)
-		sleep(2)
-		driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+		sleep(3)
+		driver.execute_script("window.scrollTo(0, document.body.scrollHeight/4);")
+		sleep(3)
+		driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+		sleep(3)
+		driver.execute_script("window.scrollTo(0, document.body.scrollHeight/4*3);")
 		sleep(3)
 		driver.execute_script("window.scrollTo(0, 0);")
-		sleep(1)
+		sleep(3)
 
 		soup = BeautifulSoup(driver.page_source, 'lxml')
 
-		while check_hidden(soup):
-			soup_new = get_expanded_soup(soup, driver)
-			soup = soup_new
-			driver.execute_script("window.scrollTo(0, 0);")
+		try:
+			while check_hidden(soup):
+				soup_new = get_expanded_soup(soup, driver)
+				soup = soup_new
+				driver.execute_script("window.scrollTo(0, 0);")
+		except:
+			print("ERROR: Element not interatable")
 		
 		soup_new = soup
 
